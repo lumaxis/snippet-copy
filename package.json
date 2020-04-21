@@ -1,0 +1,72 @@
+{
+	"name": "snippet-copy",
+	"displayName": "Snippet Copy",
+	"description": "Easily copy snippets of code without unnecessary indentation, making it easier to share them e.g. via Slack",
+	"version": "0.1.0",
+	"preview": true,
+	"publisher": "lumaxis",
+	"author": {
+		"name": "Lukas Spieß"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/lumaxis/snippet-copy"
+	},
+	"categories": [
+		"Other"
+	],
+	"engines": {
+		"vscode": "^1.44.0"
+	},
+	"activationEvents": [
+		"onCommand:snippet-copy.copyWithoutLeadingIndentation"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"commands": [
+			{
+				"command": "snippet-copy.copyWithoutLeadingIndentation",
+				"title": "Copy Without Leading Indentation"
+			}
+		],
+		"keybindings": [
+			{
+				"command": "snippet-copy.copyWithoutLeadingIndentation",
+				"mac": "Cmd+Ctrl+c",
+				"linux": "Meta+Ctrl+c",
+				"win": "Win+Ctrl+c",
+				"when": "editorHasSelection"
+			}
+		],
+		"menus": {
+			"editor/context": [
+				{
+					"command": "snippet-copy.copyWithoutLeadingIndentation",
+					"when": "editorHasSelection",
+					"group": "9_cutcopypaste@2"
+				}
+			]
+		}
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"lint": "eslint src --ext ts",
+		"watch": "tsc -watch -p ./",
+		"pretest": "npm run compile && npm run lint",
+		"test": "node ./out/test/runTest.js"
+	},
+	"devDependencies": {
+		"@types/vscode": "^1.44.0",
+		"@types/glob": "^7.1.1",
+		"@types/mocha": "^7.0.2",
+		"@types/node": "^13.11.0",
+		"eslint": "^6.8.0",
+		"@typescript-eslint/parser": "^2.26.0",
+		"@typescript-eslint/eslint-plugin": "^2.26.0",
+		"glob": "^7.1.6",
+		"mocha": "^7.1.1",
+		"typescript": "^3.8.3",
+		"vscode-test": "^1.3.0"
+	}
+}

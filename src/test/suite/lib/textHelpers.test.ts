@@ -3,7 +3,6 @@ import * as path from 'path';
 import * as vscode from 'vscode';
 
 import { generateCopyableText } from '../../../lib/textHelpers';
-// import * as myExtension from '../extension';
 
 const fixturesPath = '/../../../../src/test/fixtures/';
 const uri = vscode.Uri.file(

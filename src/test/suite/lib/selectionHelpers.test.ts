@@ -66,7 +66,7 @@ describe('Selection Helpers', function () {
 			);
 			let crlfDocument = await vscode.workspace.openTextDocument(uri);
 
-			assert.equal('def polish\n\r  puts "Polishing"\n\rend', adjustIndentationInSelection(crlfDocument, [1, 2, 3], 2));
+			assert.equal('def polish\r\n  puts "Polishing"\r\nend', adjustIndentationInSelection(crlfDocument, [1, 2, 3], 2));
 		});
 	});
 });

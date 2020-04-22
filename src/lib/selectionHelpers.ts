@@ -19,7 +19,7 @@ export function calculateMinimumIndentationInSelection(document: TextDocument, l
 }
 
 export function adjustIndentationInSelection(document: TextDocument, lineIndexes: number[], minimumIndentation: number) {
-	const endOfLineCharacter = document.eol === EndOfLine.CRLF ? '\n\r' : '\n';
+	const endOfLineCharacter = document.eol === EndOfLine.CRLF ? '\r\n' : '\n';
 
 	return lineIndexes.map((lineIndex) => {
 		const line = document.lineAt(lineIndex);

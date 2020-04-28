@@ -1,5 +1,16 @@
 # Change Log
 
+## [Unreleased]
+
+### Features
+
+-  Add support for copying snippets from multiple selections
+
+### Chores
+
+- Increase automatic testing to improve stability
+- Update third-party dependencies
+
 ## [0.1.1]
 
 ### Bugfixes

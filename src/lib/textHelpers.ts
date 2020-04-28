@@ -13,7 +13,7 @@ export function generateSnippet(document: TextDocument, selections: Selection[],
 	if (markdownCodeBlock) {
 		const config = workspace.getConfiguration('snippet-copy');
 
-		return wrapTextInMarkdownCodeBlock(document, snippet, config.addLanguageId);
+		return wrapTextInMarkdownCodeBlock(document, snippet, config.addLanguageIdentifierToMarkdownBlock);
 	}
 
 	return snippet;

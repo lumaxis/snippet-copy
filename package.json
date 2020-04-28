@@ -19,14 +19,19 @@
 		"vscode": "^1.44.0"
 	},
 	"activationEvents": [
-		"onCommand:snippet-copy.copyWithoutLeadingIndentation"
+		"onCommand:snippet-copy.copySnippet",
+		"onCommand:snippet-copy.copySnippetAsMarkdownCodeBlock"
 	],
 	"main": "./out/extension.js",
 	"contributes": {
 		"commands": [
 			{
-				"command": "snippet-copy.copyWithoutLeadingIndentation",
-				"title": "Copy Without Leading Indentation"
+				"command": "snippet-copy.copySnippet",
+				"title": "Copy Snippet Without Leading Indentation"
+			},
+			{
+				"command": "snippet-copy.copySnippetAsMarkdownCodeBlock",
+				"title": "Copy Snippet Without Leading Indentation as Markdown Code Block"
 			}
 		],
 		"configuration": {
@@ -41,19 +46,31 @@
 		},
 		"keybindings": [
 			{
-				"command": "snippet-copy.copyWithoutLeadingIndentation",
+				"command": "snippet-copy.copySnippet",
 				"mac": "Cmd+Ctrl+c",
 				"linux": "Meta+Ctrl+c",
 				"win": "Win+Ctrl+c",
+				"when": "editorHasSelection"
+			},
+			{
+				"command": "snippet-copy.copySnippetAsMarkdownCodeBlock",
+				"mac": "Cmd+Ctrl+Shift+c",
+				"linux": "Meta+Ctrl+Shift+c",
+				"win": "Win+Ctrl+Shift+c",
 				"when": "editorHasSelection"
 			}
 		],
 		"menus": {
 			"editor/context": [
 				{
-					"command": "snippet-copy.copyWithoutLeadingIndentation",
+					"command": "snippet-copy.copySnippet",
 					"when": "editorHasSelection",
 					"group": "9_cutcopypaste@2"
+				},
+				{
+					"command": "snippet-copy.copySnippetAsMarkdownCodeBlock",
+					"when": "editorHasSelection",
+					"group": "9_cutcopypaste@3"
 				}
 			]
 		}

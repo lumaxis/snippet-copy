@@ -37,7 +37,7 @@
 		"configuration": {
 			"title": "Snippet Copy",
 			"properties": {
-				"snippet-copy.addLanguageIdToMarkdownBlock": {
+				"snippet-copy.addLanguageIdentifierToMarkdownBlock": {
 					"type": "boolean",
 					"default": false,
 					"description": "Add a programming language identifier to the beginning of the Markdown code block. This is incompatible with some apps, for example Slack."

@@ -1,9 +1,10 @@
 import * as vscode from 'vscode';
+import { ExtensionContext } from 'vscode';
 import { generateSnippet } from './lib/textHelpers';
 
-export function activate(context: vscode.ExtensionContext) {
+export function activate(context: ExtensionContext) {
 	let disposable = vscode.commands.registerTextEditorCommand('snippet-copy.copyWithoutLeadingIndentation', async (editor) => {
-		const snippet = generateSnippet(editor);
+		const snippet = generateSnippet(editor.document, editor.selections);
 
 		await vscode.env.clipboard.writeText(snippet);
 	});

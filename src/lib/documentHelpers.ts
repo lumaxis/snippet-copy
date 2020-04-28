@@ -1,4 +1,4 @@
-import { TextDocument, EndOfLine, TextLine, Range } from "vscode";
+import { EndOfLine, Range, TextDocument, TextLine } from "vscode";
 
 export function linesForIndexes(document: TextDocument, lineIndexes: number[]): TextLine[] {
 	return lineIndexes.map((lineIndex) => {
@@ -26,7 +26,11 @@ export function contentOfLinesWithAdjustedIndentation(document: TextDocument, li
 	return contentOfLinesWithAdjustedIndentation.join(eolCharacter);
 }
 
-export function adjustedRangeWithMinimumIndentation(range: Range, minimumIndentation: number) {
+export function adjustedRangeWithMinimumIndentation(range: Range, minimumIndentation: number): Range {
+	if (range.start.character !== 0) {
+		console.warn('Adjusting range: Range does not start at character 0, this is not expected.');
+	}
+
 	const adjustedRange = new Range(range.start.line, range.start.character + minimumIndentation, range.end.line, range.end.character);
 	return adjustedRange;
 }

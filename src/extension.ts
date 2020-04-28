@@ -1,21 +1,12 @@
 import * as vscode from 'vscode';
-import { generateCopyableText } from './lib/textHelpers';
+import { ExtensionContext } from 'vscode';
+import { generateSnippet } from './lib/textHelpers';
 
-export function activate(context: vscode.ExtensionContext) {
+export function activate(context: ExtensionContext) {
 	let disposable = vscode.commands.registerTextEditorCommand('snippet-copy.copyWithoutLeadingIndentation', async (editor) => {
-		if (editor.selections.length === 1) {
-			const document = editor.document;
-			if (!document) { return; };
+		const snippet = generateSnippet(editor.document, editor.selections);
 
-			const text = generateCopyableText(document, editor.selection);
-
-			if (!text) { return; };
-
-			await vscode.env.clipboard.writeText(text);
-		} else {
-			// TODO: Handle error case
-			vscode.window.showWarningMessage('Copying without leading indentation from multiple selections is currently not supported');
-		}
+		await vscode.env.clipboard.writeText(snippet);
 	});
 
 	context.subscriptions.push(disposable);

@@ -2,7 +2,7 @@ import * as assert from 'assert';
 import * as path from 'path';
 import * as vscode from 'vscode';
 import { Position, Selection, TextDocument } from 'vscode';
-import { generateCopyableText, generateSnippet } from '../../../lib/textHelpers';
+import { generateCopyableText, generateSnippet, wrapTextInMarkdownCodeBlock } from '../../../lib/textHelpers';
 
 const fixturesPath = '/../../../../src/test/fixtures/';
 const uri = vscode.Uri.file(
@@ -59,6 +59,18 @@ describe('Text Helpers', () => {
 			assert.deepEqual(testSelection1.content,
 				generateCopyableText(document, new Selection(testSelection1.selection.start, new Position(5, 0)))
 			);
+		});
+
+		context('wrapTextInMarkdownCodeBlock', () => {
+			it('returns the text wrapped in a Markdown code block', () => {
+				const codeSnippet = 'console.log("Yo");';
+				assert.equal(wrapTextInMarkdownCodeBlock(document, codeSnippet), '```\n' + codeSnippet + '\n```');
+			});
+
+			it('returns the wrapped text with a language identifier', () => {
+				const codeSnippet = 'console.log("Yo");';
+				assert.equal(wrapTextInMarkdownCodeBlock(document, codeSnippet, true), '```javascript\n' + codeSnippet + '\n```');
+			});
 		});
 	});
 });

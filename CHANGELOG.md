@@ -4,7 +4,9 @@
 
 ### Features
 
--  Add support for copying snippets from multiple selections
+- Add additional command to copy snippet with surrounding Markdown code block syntax
+- Add configuration option to add language identifier to Markdown code blocks
+- Add support for copying snippets from multiple selections
 
 ### Chores
 

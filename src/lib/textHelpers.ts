@@ -1,12 +1,10 @@
-import { TextDocument, Selection, TextEditor } from "vscode";
+import { Selection, TextDocument } from "vscode";
+import { contentOfLinesWithAdjustedIndentation, endOfLineCharacter, minimumIndentationForLineIndexes } from "./documentHelpers";
 import { lineIndexesForSelection } from "./selectionHelpers";
-import { endOfLineCharacter, minimumIndentationForLineIndexes, contentOfLinesWithAdjustedIndentation } from "./documentHelpers";
 
-export function generateSnippet(editor: TextEditor): string {
-	const document = editor.document;
-
+export function generateSnippet(document: TextDocument, selections: Selection[]): string {
 	let texts: string[] = [];
-	editor.selections.forEach(selection => {
+	selections.forEach(selection => {
 		texts.push(generateCopyableText(document, selection));
 	});
 

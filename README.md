@@ -28,3 +28,7 @@ This command has an additional configuration option that let's you determine if 
 ```json
 "snippet-copy.addLanguageIdToMarkdownBlock": false // Default is false
 ```
+
+---
+
+With an icon lovingly crafted by @dipree 🌺

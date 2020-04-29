@@ -1,11 +1,14 @@
 # Change Log
 
-## [Unreleased]
+## [0.2.0]
 
 ### Features
 
-- Add additional command to copy snippet with surrounding Markdown code block syntax
-- Add configuration option to add language identifier to Markdown code blocks
+- The extension now has a shiny new icon! Thanks @dipree 🙌🏼
+- Add additional command to copy snippet with surrounding Markdown code block syntax  
+  The command is called `Copy Snippet Without Leading Indentation as Markdown Code Block` in the Command Palette and its default keyboard shortcut is `Win/Meta/Cmd+Ctrl+Shift+c`
+- Add configuration option to add language identifier to Markdown code blocks  
+  This option can be found under the identifier `snippet-copy.addLanguageIdentifierToMarkdownBlock` and its default is `false`.
 - Add support for copying snippets from multiple selections
 
 ### Chores

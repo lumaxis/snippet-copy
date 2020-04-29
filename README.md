@@ -1,4 +1,11 @@
-# Snippet Copy
+<p align="center">
+  <img
+    width="100"
+    src="https://raw.githubusercontent.com/lumaxis/snippet-copy/master/images/icon.png"
+    alt="Snippet Copy"
+  />
+	<h1 align="center">Snippet Copy</h1>
+</p>
 
 Ever wanted to copy part of a source file as a snippet and paste it somewhere else, like in Slack or in a GitHub comment?
 
@@ -28,3 +35,7 @@ This command has an additional configuration option that let's you determine if 
 ```json
 "snippet-copy.addLanguageIdToMarkdownBlock": false // Default is false
 ```
+
+---
+
+With an icon lovingly crafted by @dipree 🌺

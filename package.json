@@ -3,6 +3,7 @@
 	"displayName": "Snippet Copy",
 	"description": "Easily copy snippets of code without unnecessary indentation, making it easier to share them e.g. via Slack",
 	"version": "0.1.1",
+	"icon": "images/icon.png",
 	"preview": true,
 	"publisher": "lumaxis",
 	"author": {

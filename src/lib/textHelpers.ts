@@ -1,14 +1,20 @@
-import { Selection, TextDocument } from "vscode";
-import { contentOfLinesWithAdjustedIndentation, endOfLineCharacter, minimumIndentationForLineIndexes } from "./documentHelpers";
+import { Selection, TextDocument, workspace } from "vscode";
+import { contentOfLinesWithAdjustedIndentation, endOfLineCharacter, languageId, minimumIndentationForLineIndexes } from "./documentHelpers";
 import { lineIndexesForSelection } from "./selectionHelpers";
 
-export function generateSnippet(document: TextDocument, selections: Selection[]): string {
+export function generateSnippet(document: TextDocument, selections: Selection[], markdownCodeBlock = false): string {
 	let texts: string[] = [];
 	selections.forEach(selection => {
 		texts.push(generateCopyableText(document, selection));
 	});
 
 	const snippet = texts.join(endOfLineCharacter(document));
+
+	if (markdownCodeBlock) {
+		const config = workspace.getConfiguration('snippet-copy');
+
+		return wrapTextInMarkdownCodeBlock(document, snippet, config.addLanguageIdentifierToMarkdownBlock);
+	}
 
 	return snippet;
 }
@@ -25,4 +31,14 @@ export function generateCopyableText(document: TextDocument, selection: Selectio
 	const text = contentOfLinesWithAdjustedIndentation(document, lineIndexes, minimumIndentation);
 
 	return text;
+}
+
+export function wrapTextInMarkdownCodeBlock(document: TextDocument, text: string, addLanguageId = false): string {
+	const codeBlockDelimiter = '```';
+	const eolCharacter = endOfLineCharacter(document);
+	const optionalLanguageIdentifier = addLanguageId ? languageId(document) : '';
+
+	return 	codeBlockDelimiter + optionalLanguageIdentifier + eolCharacter +
+					text + eolCharacter +
+					codeBlockDelimiter;
 }

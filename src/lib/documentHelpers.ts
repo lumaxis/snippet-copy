@@ -38,3 +38,7 @@ export function adjustedRangeWithMinimumIndentation(range: Range, minimumIndenta
 export function endOfLineCharacter(document: TextDocument): string {
 	return document.eol === EndOfLine.CRLF ? '\r\n' : '\n';
 }
+
+export function languageId(document: TextDocument): string {
+	return document.languageId;
+}

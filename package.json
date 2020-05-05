@@ -6,7 +6,7 @@
 	"icon": "images/icon.png",
 	"galleryBanner": {
 		"color": "#1C252C",
-		"theme": "light"
+		"theme": "dark"
 	},
 	"preview": true,
 	"publisher": "lumaxis",

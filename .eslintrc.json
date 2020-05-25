@@ -15,6 +15,7 @@
 		"semi": "off",
 		"indent": ["error", "tab"]
 	},
+	"ignorePatterns": ["**/fixtures/**"],
 	"overrides": [
 		{
 			"files": ["**/*.ts"],

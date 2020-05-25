@@ -5,6 +5,12 @@
 ### Fixes
 
 - Ignore empty or whitespace-only lines when calculating minimum indentation of the snippet (#17)
+- Fix banner color in VS Code Marketplace
+
+### Chore
+
+- Improve setup to keep third-party dependencies up-to-date
+- Improve development setup by launching debug session without other extensions
 
 ## [0.2.0]
 

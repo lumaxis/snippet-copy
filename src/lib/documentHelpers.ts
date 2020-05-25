@@ -7,9 +7,18 @@ export function linesForIndexes(document: TextDocument, lineIndexes: number[]): 
 }
 
 export function minimumIndentationForLineIndexes(document: TextDocument, lineIndexes: number[]): number {
-	const indentationLevels = lineIndexes.map((lineIndex) => {
-		return document.lineAt(lineIndex).firstNonWhitespaceCharacterIndex;
-	});
+	const indentationLevels = lineIndexes.reduce<number[]>((indentationLevels, lineIndex) => {
+		const line = document.lineAt(lineIndex);
+
+		// Skip empty lines so they don't skew the calculation results
+		if (line.isEmptyOrWhitespace) {
+			return indentationLevels;
+		}
+
+		indentationLevels.push(line.firstNonWhitespaceCharacterIndex);
+
+		return indentationLevels;
+	}, []);
 
 	const minimumIndentationLevelInSelection = Math.min(...indentationLevels);
 	return minimumIndentationLevelInSelection;

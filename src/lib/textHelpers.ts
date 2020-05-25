@@ -3,7 +3,7 @@ import { contentOfLinesWithAdjustedIndentation, endOfLineCharacter, languageId, 
 import { lineIndexesForSelection } from "./selectionHelpers";
 
 export function generateSnippet(document: TextDocument, selections: Selection[], markdownCodeBlock = false): string {
-	let texts: string[] = [];
+	const texts: string[] = [];
 	selections.forEach(selection => {
 		texts.push(generateCopyableText(document, selection));
 	});
@@ -19,7 +19,7 @@ export function generateSnippet(document: TextDocument, selections: Selection[],
 	return snippet;
 }
 
-export function generateCopyableText(document: TextDocument, selection: Selection) {
+export function generateCopyableText(document: TextDocument, selection: Selection): string {
 	const lineIndexes = lineIndexesForSelection(selection);
 
 	// Remove last line's index if there's no selected text on that line

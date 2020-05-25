@@ -1,7 +1,7 @@
 import { commands, env, ExtensionContext } from 'vscode';
 import { generateSnippet } from './lib/textHelpers';
 
-export function activate(context: ExtensionContext) {
+export function activate(context: ExtensionContext): void {
 	context.subscriptions.push(
 		commands.registerTextEditorCommand('snippet-copy.copySnippet', async (editor) => {
 			const snippet = generateSnippet(editor.document, editor.selections, false);
@@ -17,5 +17,3 @@ export function activate(context: ExtensionContext) {
 		})
 	);
 }
-
-export function deactivate() { }

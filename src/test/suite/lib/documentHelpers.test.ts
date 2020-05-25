@@ -51,7 +51,7 @@ describe('Document Helpers', function () {
 			const uri = vscode.Uri.file(
 				path.join(__dirname + fixturesPath + 'crlf-ruby-example.rb')
 			);
-			let crlfDocument = await vscode.workspace.openTextDocument(uri);
+			const crlfDocument = await vscode.workspace.openTextDocument(uri);
 
 			assert.equal(contentOfLinesWithAdjustedIndentation(crlfDocument, [1, 2, 3], 2), 'def polish\r\n  puts "Polishing"\r\nend');
 		});

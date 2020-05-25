@@ -1,5 +1,11 @@
 # Change Log
 
+## [Unreleased]
+
+### Fixes
+
+- Ignore empty or whitespace-only lines when calculating minimum indentation of the snippet (#17)
+
 ## [0.2.0]
 
 ### Features

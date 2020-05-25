@@ -28,7 +28,7 @@ describe('Document Helpers', function () {
 		});
 	});
 
-	context('minimumIndentationLevelForLineIndexes', async () => {
+	context('minimumIndentationLevelForLineIndexes', () => {
 		it('calculates the correct minimum indentation level for a single line', () => {
 			assert.equal(minimumIndentationForLineIndexes(document, [3]), 6);
 		});
@@ -38,7 +38,7 @@ describe('Document Helpers', function () {
 		});
 	});
 
-	context('contentOfLinesWithAdjustedIndentation', async () => {
+	context('contentOfLinesWithAdjustedIndentation', () => {
 		it('returns multiline text with the indentation adjusted correctly', () => {
 			assert.equal(contentOfLinesWithAdjustedIndentation(document, [2, 3, 4], 4), 'if (aValue) {\n  console.log(`Doing something with ${aValue}!`);\n}');
 		});
@@ -68,7 +68,7 @@ describe('Document Helpers', function () {
 	});
 
 	context('endOfLineCharacter', () => {
-		it('correctly returns LF', async () => {
+		it('correctly returns LF', () => {
 			assert.equal(endOfLineCharacter(document), '\n');
 		});
 

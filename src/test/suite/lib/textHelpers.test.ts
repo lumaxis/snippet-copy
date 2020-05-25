@@ -23,6 +23,10 @@ describe('Text Helpers', () => {
 		content: 'doSomethingElse() {\n  throw new Error(\'Nope!\');\n}',
 		selection: new Selection(7, 2, 9, 3)
 	};
+	const testSelection3: TestSelection = {
+		content: '}\n\ndoSomethingElse() {',
+		selection: new Selection(5, 0, 7, 21)
+	};
 	let document: TextDocument;
 
 	before(async () => {
@@ -58,6 +62,12 @@ describe('Text Helpers', () => {
 		it('generates the correct text when the cursor is on a newline', () => {
 			assert.deepEqual(testSelection1.content,
 				generateCopyableText(document, new Selection(testSelection1.selection.start, new Position(5, 0)))
+			);
+		});
+
+		it('generates the correct text when selection contains empty line', () => {
+			assert.deepEqual(testSelection3.content,
+				generateCopyableText(document, testSelection3.selection)
 			);
 		});
 

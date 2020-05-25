@@ -8,4 +8,9 @@ class MyThing {
   doSomethingElse() {
     throw new Error('Nope!');
   }
+
+    emptyFunction() {
+
+  
+    }
 }

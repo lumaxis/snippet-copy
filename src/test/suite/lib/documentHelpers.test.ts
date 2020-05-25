@@ -36,6 +36,10 @@ describe('Document Helpers', function () {
 		it('calculates the correct minimum indentation level for multiple lines', () => {
 			assert.equal(minimumIndentationForLineIndexes(document, [1, 2, 3]), 2);
 		});
+
+		it('calculates the correct minimum indentation level when lines contain an empty line', () => {
+			assert.equal(minimumIndentationForLineIndexes(document, [11, 12, 13, 14]), 4);
+		});
 	});
 
 	context('contentOfLinesWithAdjustedIndentation', async () => {

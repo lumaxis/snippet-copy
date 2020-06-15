@@ -1,6 +1,6 @@
 import * as path from 'path';
-
 import { runTests } from 'vscode-test';
+
 
 async function main() {
 	try {
@@ -20,4 +20,5 @@ async function main() {
 	}
 }
 
+// eslint-disable-next-line @typescript-eslint/no-floating-promises
 main();

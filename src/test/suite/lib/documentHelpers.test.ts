@@ -28,7 +28,7 @@ describe('Document Helpers', function () {
 		});
 	});
 
-	context('minimumIndentationLevelForLineIndexes', async () => {
+	context('minimumIndentationLevelForLineIndexes', () => {
 		it('calculates the correct minimum indentation level for a single line', () => {
 			assert.equal(minimumIndentationForLineIndexes(document, [3]), 6);
 		});
@@ -42,7 +42,7 @@ describe('Document Helpers', function () {
 		});
 	});
 
-	context('contentOfLinesWithAdjustedIndentation', async () => {
+	context('contentOfLinesWithAdjustedIndentation', () => {
 		it('returns multiline text with the indentation adjusted correctly', () => {
 			assert.equal(contentOfLinesWithAdjustedIndentation(document, [2, 3, 4], 4), 'if (aValue) {\n  console.log(`Doing something with ${aValue}!`);\n}');
 		});
@@ -55,7 +55,7 @@ describe('Document Helpers', function () {
 			const uri = vscode.Uri.file(
 				path.join(__dirname + fixturesPath + 'crlf-ruby-example.rb')
 			);
-			let crlfDocument = await vscode.workspace.openTextDocument(uri);
+			const crlfDocument = await vscode.workspace.openTextDocument(uri);
 
 			assert.equal(contentOfLinesWithAdjustedIndentation(crlfDocument, [1, 2, 3], 2), 'def polish\r\n  puts "Polishing"\r\nend');
 		});
@@ -72,7 +72,7 @@ describe('Document Helpers', function () {
 	});
 
 	context('endOfLineCharacter', () => {
-		it('correctly returns LF', async () => {
+		it('correctly returns LF', () => {
 			assert.equal(endOfLineCharacter(document), '\n');
 		});
 

@@ -1,7 +1,7 @@
 <p align="center">
   <img
     width="100"
-    src="https://raw.githubusercontent.com/lumaxis/snippet-copy/master/images/icon.png"
+    src="https://raw.githubusercontent.com/lumaxis/snippet-copy/main/images/icon.png"
     alt="Snippet Copy"
   />
 	<h1 align="center">Snippet Copy</h1>

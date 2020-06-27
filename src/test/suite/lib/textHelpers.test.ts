@@ -88,31 +88,31 @@ describe('Text Helpers', () => {
 
 	context('includeLanguageIdentifier', () => {
 		it('returns true if setting is "includeLanguageIdentifier"', async () => {
-			const config: unknown = td.object({ markdownCodeBlock: { flavor: 'includeLanguageIdentifier' } });
+			const config: unknown = td.object({ markdownCodeBlock: { includeLanguageIdentifier: 'always' } });
 
 			assert.strictEqual(await includeLanguageIdentifier(config as ExtensionConfig), true);
 		});
 
 		it('returns false if setting is "plain"', async () => {
-			const config: unknown = td.object({ markdownCodeBlock: { flavor: 'plain' } });
+			const config: unknown = td.object({ markdownCodeBlock: { includeLanguageIdentifier: 'never' } });
 
 			assert.strictEqual(await includeLanguageIdentifier(config as ExtensionConfig), false);
 		});
 
 		it('returns false if setting is true', async () => {
-			const config: unknown = td.object({ markdownCodeBlock: { flavor: true } });
+			const config: unknown = td.object({ markdownCodeBlock: { includeLanguageIdentifier: true } });
 
 			assert.strictEqual(await includeLanguageIdentifier(config as ExtensionConfig), false);
 		});
 	});
 
 	context('isMarkdownCodeBlockFlavor', () => {
-		it('returns true if value is "plain"', () => {
-			assert.equal(isMarkdownCodeBlockFlavor('plain'), true);
+		it('returns true if value is "never"', () => {
+			assert.equal(isMarkdownCodeBlockFlavor('never'), true);
 		});
 
-		it('returns true if value is "includeLanguageIdentifier"', () => {
-			assert.equal(isMarkdownCodeBlockFlavor('plain'), true);
+		it('returns true if value is "always"', () => {
+			assert.equal(isMarkdownCodeBlockFlavor('always'), true);
 		});
 
 		it('returns false if value is any other string', () => {

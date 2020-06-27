@@ -1,10 +1,10 @@
 import { QuickPickItem, Selection, TextDocument, window, workspace } from "vscode";
-import { ExtensionConfig, MarkdownCodeBlockFlavor } from "../types/config";
+import { ExtensionConfig, IncludeLanguageIdentifier } from "../types/config";
 import { contentOfLinesWithAdjustedIndentation, endOfLineCharacter, languageId, minimumIndentationForLineIndexes } from "./documentHelpers";
 import { lineIndexesForSelection } from "./selectionHelpers";
 
 type MarkdownCodeBlockFlavorQuickPickItems = QuickPickItem & {
-	detail: MarkdownCodeBlockFlavor;
+	detail: IncludeLanguageIdentifier;
 };
 
 export async function generateSnippet(document: TextDocument, selections: Selection[], wrapInMarkdownCodeBlock = false): Promise<string> {
@@ -47,27 +47,27 @@ export function wrapTextInMarkdownCodeBlock(document: TextDocument, text: string
 }
 
 export async function includeLanguageIdentifier(config: ExtensionConfig): Promise<boolean> {
-	let markdownCodeBlockFlavor = config.markdownCodeBlock.flavor;
+	let includeLanguageIdentifier = config.markdownCodeBlock.includeLanguageIdentifier;
 
-	if (markdownCodeBlockFlavor === 'prompt') {
+	if (includeLanguageIdentifier === 'prompt') {
 		const prompt = await promptForMarkdownCodeBlockFlavor();
 
 		if (prompt && isMarkdownCodeBlockFlavor(prompt.detail)) {
-			markdownCodeBlockFlavor = prompt.detail;
+			includeLanguageIdentifier = prompt.detail;
 		}
 	}
-	return markdownCodeBlockFlavor === 'includeLanguageIdentifier';
+	return includeLanguageIdentifier === 'always';
 }
 
 export async function promptForMarkdownCodeBlockFlavor(): Promise<MarkdownCodeBlockFlavorQuickPickItems | undefined> {
 	const quickPickItems: MarkdownCodeBlockFlavorQuickPickItems[] = [
 		{
 			label: 'Plain fenced Markdown code block',
-			detail: 'plain',
-			description: 'Copy a plain, default Markdown code block'
+			detail: 'never',
+			description: 'Copy a regular fenced Markdown code block without language identifier'
 		}, {
 			label: 'Include Markdown language identifier',
-			detail: 'includeLanguageIdentifier',
+			detail: 'always',
 			description: "Copy a Markdown code block that includes the language identifier of the current document"
 		}
 	];
@@ -76,7 +76,7 @@ export async function promptForMarkdownCodeBlockFlavor(): Promise<MarkdownCodeBl
 	});
 }
 
-export function isMarkdownCodeBlockFlavor(value: string | undefined): value is MarkdownCodeBlockFlavor {
-	const validValues: MarkdownCodeBlockFlavor[] = ['plain', 'includeLanguageIdentifier'];
-	return !!value && validValues.includes(value as MarkdownCodeBlockFlavor);
+export function isMarkdownCodeBlockFlavor(value: string | undefined): value is IncludeLanguageIdentifier {
+	const validValues: IncludeLanguageIdentifier[] = ['never', 'always'];
+	return !!value && validValues.includes(value as IncludeLanguageIdentifier);
 }

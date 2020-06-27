@@ -42,18 +42,18 @@
 		"configuration": {
 			"title": "Snippet Copy",
 			"properties": {
-				"snippet-copy.markdownCodeBlock.flavor": {
+				"snippet-copy.markdownCodeBlock.includeLanguageIdentifier": {
 					"type": "string",
 					"default": "prompt",
-					"markdownDescription": "Flavor of the generated [fenced Markdown code block](https://help.github.com/en/github/writing-on-github/creating-and-highlighting-code-blocks). By default, prompts every time a snippet is copied as a Markdown code block.",
+					"markdownDescription": "Style of the generated [fenced Markdown code block](https://help.github.com/en/github/writing-on-github/creating-and-highlighting-code-blocks). By default, prompts every time a snippet is copied as a Markdown code block.",
 					"enum": [
-						"plain",
-						"includeLanguageIdentifier",
+						"never",
+						"always",
 						"prompt"
 					],
 					"markdownEnumDescriptions": [
-						"Copy a plain fenced Markdown code block.",
-						"Copy a fenced Markdown code block that includes the language identifier of the current document.\nThis enables [automatic syntax highlighting](https://help.github.com/en/github/writing-on-github/creating-and-highlighting-code-blocks#syntax-highlighting) on e.g. GitHub or StackOverflow but isn't compatible with some apps, for example Slack.",
+						"Copy a regular fenced Markdown code block without language identifier.",
+						"Copy a fenced Markdown code block that includes the language identifier of the current document.  \nThis enables [automatic syntax highlighting](https://help.github.com/en/github/writing-on-github/creating-and-highlighting-code-blocks#syntax-highlighting) on e.g. GitHub or StackOverflow but isn't compatible with some apps, for example Slack.",
 						"Always prompt when copying a snippet as a Markdown code block whether to include the language identifier or not."
 					]
 				}

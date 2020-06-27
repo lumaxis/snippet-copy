@@ -1,10 +1,10 @@
 import { WorkspaceConfiguration } from "vscode";
 
-export type MarkdownCodeBlockFlavor = 'plain' | 'includeLanguageIdentifier';
+export type IncludeLanguageIdentifier = 'always' | 'never';
 
 export type ExtensionConfig = WorkspaceConfiguration & {
 	markdownCodeBlock: {
-		flavor: MarkdownCodeBlockFlavor | 'prompt'
+		includeLanguageIdentifier: IncludeLanguageIdentifier | 'prompt'
 	};
 	addLanguageIdentifierToMarkdownBlock?: boolean;
 };

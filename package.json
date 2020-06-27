@@ -32,11 +32,11 @@
 		"commands": [
 			{
 				"command": "snippet-copy.copySnippet",
-				"title": "Copy Snippet Without Leading Indentation"
+				"title": "Copy Snippet"
 			},
 			{
 				"command": "snippet-copy.copySnippetAsMarkdownCodeBlock",
-				"title": "Copy Snippet Without Leading Indentation as Markdown Code Block"
+				"title": "Copy Snippet as Markdown Code Block"
 			}
 		],
 		"configuration": {

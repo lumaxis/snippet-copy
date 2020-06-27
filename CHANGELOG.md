@@ -1,5 +1,13 @@
 # Change Log
 
+## [Unreleased]
+
+### Features
+
+- Rename VS Code commands to be shorter and more concise.
+    - `Copy Snippet Without Leading Indentation` is now `Copy Snippet`
+    - `Copy Snippet Without Leading Indentation as Markdown Code Block` is now `Copy Snippet as Markdown Code Block`
+
 ## [0.2.3]
 
 ### Fixes

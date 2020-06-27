@@ -10,7 +10,7 @@
 Ever wanted to copy part of a source file as a snippet and paste it somewhere else, like in Slack or in a GitHub comment?
 
 Previously, you either got a bunch of unnecessary indentation that made the snippet ugly to read or you had to manually un-tab the snippet, copy, and then reset the indentation.
-With **Snippet Copy** you can automatically get a snippet added to your clipboard with all the unnecessary indentation already removed!
+With **Snippet Copy** you can automatically get a snippet added to your clipboard with all the leading indentation already removed!
 
 ## Features
 
@@ -26,7 +26,7 @@ All features can be used via different ways in VS Code
 
 ### Copy Snippet
 
-Simply get a copy of your currently selected code or text snippet added to your clipboard – without any unnecessary indentation that you would otherwise need to remove manually.
+Simply get a copy of your currently selected code or text snippet added to your clipboard – without any leading indentation that you would otherwise need to remove manually.
 
 ### Copy Snippet as Markdown Code Block
 

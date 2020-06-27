@@ -7,7 +7,8 @@
 - Rename VS Code commands to be shorter and more concise.
     - `Copy Snippet Without Leading Indentation` is now `Copy Snippet`
     - `Copy Snippet Without Leading Indentation as Markdown Code Block` is now `Copy Snippet as Markdown Code Block`
-- Add `markdownCodeBlock.includeLanguageIdentifier` configuration option for Markdown block behavior.  
+- Improve configuration options for Markdown code blocks
+  - Add `markdownCodeBlock.includeLanguageIdentifier` configuration option for Markdown block behavior. **This replaces `snippet-copy.addLanguageIdentifierToMarkdownBlock`**. 
   - Allows to set whether Markdown blocks should always include the [language identifier](https://help.github.com/en/github/writing-on-github/creating-and-highlighting-code-blocks) which allows for syntax highlighting in some tools (for example github.com) but is not compatible with others (for example Slack).  
   - The default is "`prompt`" which makes the extension always prompt when using the "Copy Snippet as Markdown Code Block" command.
 

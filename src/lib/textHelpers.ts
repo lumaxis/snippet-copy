@@ -34,11 +34,11 @@ export function generateCopyableText(document: TextDocument, selection: Selectio
 	const minimumIndentation = minimumIndentationForLineIndexes(document, lineIndexes);
 	const text = contentOfLinesWithAdjustedIndentation(document, lineIndexes, minimumIndentation);
 
-	if (config.convertTabsToSpaces.enabled) {
-		return replaceLeadingTabsWithSpaces(text, config.convertTabsToSpaces.tabSize);
+	if (!config.convertTabsToSpaces.enabled) {
+		return text;
 	}
 
-	return text;
+	return replaceLeadingTabsWithSpaces(text, config.convertTabsToSpaces.tabSize);
 }
 
 export function wrapTextInMarkdownCodeBlock(document: TextDocument, text: string, addLanguageId = false): string {

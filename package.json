@@ -59,7 +59,7 @@
 				},
 				"snippet-copy.convertTabsToSpaces.enabled": {
 					"type": "boolean",
-					"default": "false",
+					"default": "true",
 					"description": "Convert tabs in a snippet to spaces"
 				},
 				"snippet-copy.convertTabsToSpaces.tabSize": {

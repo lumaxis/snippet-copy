@@ -1,5 +1,11 @@
 # Change Log
 
+## [0.2.3]
+
+### Fixes
+
+- Use absolute image links
+
 ## [0.2.2]
 
 Quick update to rename the default branch to "main"

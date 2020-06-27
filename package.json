@@ -2,7 +2,7 @@
 	"name": "snippet-copy",
 	"displayName": "Snippet Copy",
 	"description": "Easily copy snippets of code without unnecessary indentation, making it easier to share them e.g. via Slack",
-	"version": "0.2.2",
+	"version": "0.2.3",
 	"icon": "images/icon.png",
 	"galleryBanner": {
 		"color": "#1C252C",

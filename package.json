@@ -56,6 +56,16 @@
 						"Copy a fenced Markdown code block that includes the language identifier of the current document.  \nThis enables [automatic syntax highlighting](https://help.github.com/en/github/writing-on-github/creating-and-highlighting-code-blocks#syntax-highlighting) on e.g. GitHub or StackOverflow but isn't compatible with some apps, for example Slack.",
 						"Always prompt when copying a snippet as a Markdown code block whether to include the language identifier or not."
 					]
+				},
+				"snippet-copy.convertTabsToSpaces.enabled": {
+					"type": "boolean",
+					"default": "false",
+					"description": "Convert tabs in a snippet to spaces"
+				},
+				"snippet-copy.convertTabsToSpaces.tabSize": {
+					"type": "integer",
+					"default": 2,
+					"description": "How many spaces to replace a tab with"
 				}
 			}
 		},

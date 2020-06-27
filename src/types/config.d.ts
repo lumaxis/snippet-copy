@@ -7,4 +7,8 @@ export type ExtensionConfig = WorkspaceConfiguration & {
 		includeLanguageIdentifier: IncludeLanguageIdentifier | 'prompt'
 	};
 	addLanguageIdentifierToMarkdownBlock?: boolean;
+	convertTabsToSpaces: {
+		enabled: boolean;
+		tabSize: number;
+	}
 };

@@ -1,7 +1,7 @@
 {
 	"name": "snippet-copy",
 	"displayName": "Snippet Copy",
-	"description": "Easily copy snippets of code without unnecessary indentation, making it easier to share them e.g. via Slack",
+	"description": "Copy snippets of code without leading indentation for easier sharing",
 	"version": "0.2.3",
 	"icon": "images/icon.png",
 	"galleryBanner": {
@@ -32,11 +32,11 @@
 		"commands": [
 			{
 				"command": "snippet-copy.copySnippet",
-				"title": "Copy Snippet Without Leading Indentation"
+				"title": "Copy Snippet"
 			},
 			{
 				"command": "snippet-copy.copySnippetAsMarkdownCodeBlock",
-				"title": "Copy Snippet Without Leading Indentation as Markdown Code Block"
+				"title": "Copy Snippet as Markdown Code Block"
 			}
 		],
 		"configuration": {

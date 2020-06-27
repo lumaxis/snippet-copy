@@ -1,8 +1,13 @@
-import { Selection, TextDocument, workspace } from "vscode";
+import { QuickPickItem, Selection, TextDocument, window, workspace } from "vscode";
+import { ExtensionConfig, MarkdownCodeBlockFlavor } from "../types/config";
 import { contentOfLinesWithAdjustedIndentation, endOfLineCharacter, languageId, minimumIndentationForLineIndexes } from "./documentHelpers";
 import { lineIndexesForSelection } from "./selectionHelpers";
 
-export function generateSnippet(document: TextDocument, selections: Selection[], markdownCodeBlock = false): string {
+type MarkdownCodeBlockFlavorQuickPickItems = QuickPickItem & {
+	detail: MarkdownCodeBlockFlavor;
+};
+
+export async function generateSnippet(document: TextDocument, selections: Selection[], wrapInMarkdownCodeBlock = false): Promise<string> {
 	const texts: string[] = [];
 	selections.forEach(selection => {
 		texts.push(generateCopyableText(document, selection));
@@ -10,10 +15,8 @@ export function generateSnippet(document: TextDocument, selections: Selection[],
 
 	const snippet = texts.join(endOfLineCharacter(document));
 
-	if (markdownCodeBlock) {
-		const config = workspace.getConfiguration('snippet-copy');
-
-		return wrapTextInMarkdownCodeBlock(document, snippet, config.addLanguageIdentifierToMarkdownBlock);
+	if (wrapInMarkdownCodeBlock) {
+		return wrapTextInMarkdownCodeBlock(document, snippet, await includeLanguageIdentifier(workspace.getConfiguration('snippet-copy') as ExtensionConfig));
 	}
 
 	return snippet;
@@ -38,7 +41,42 @@ export function wrapTextInMarkdownCodeBlock(document: TextDocument, text: string
 	const eolCharacter = endOfLineCharacter(document);
 	const optionalLanguageIdentifier = addLanguageId ? languageId(document) : '';
 
-	return 	codeBlockDelimiter + optionalLanguageIdentifier + eolCharacter +
-					text + eolCharacter +
-					codeBlockDelimiter;
+	return codeBlockDelimiter + optionalLanguageIdentifier + eolCharacter +
+		text + eolCharacter +
+		codeBlockDelimiter;
+}
+
+export async function includeLanguageIdentifier(config: ExtensionConfig): Promise<boolean> {
+	let markdownCodeBlockFlavor = config.markdownCodeBlock.flavor;
+
+	if (markdownCodeBlockFlavor === 'prompt') {
+		const prompt = await promptForMarkdownCodeBlockFlavor();
+
+		if (prompt && isMarkdownCodeBlockFlavor(prompt.detail)) {
+			markdownCodeBlockFlavor = prompt.detail;
+		}
+	}
+	return markdownCodeBlockFlavor === 'includeLanguageIdentifier';
+}
+
+export async function promptForMarkdownCodeBlockFlavor(): Promise<MarkdownCodeBlockFlavorQuickPickItems | undefined> {
+	const quickPickItems: MarkdownCodeBlockFlavorQuickPickItems[] = [
+		{
+			label: 'Plain fenced Markdown code block',
+			detail: 'plain',
+			description: 'Copy a plain, default Markdown code block'
+		}, {
+			label: 'Include Markdown language identifier',
+			detail: 'includeLanguageIdentifier',
+			description: "Copy a Markdown code block that includes the language identifier of the current document"
+		}
+	];
+	return window.showQuickPick(quickPickItems, {
+		matchOnDetail: true
+	});
+}
+
+export function isMarkdownCodeBlockFlavor(value: string | undefined): value is MarkdownCodeBlockFlavor {
+	const validValues: MarkdownCodeBlockFlavor[] = ['plain', 'includeLanguageIdentifier'];
+	return !!value && validValues.includes(value as MarkdownCodeBlockFlavor);
 }

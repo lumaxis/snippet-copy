@@ -18,11 +18,11 @@ All features can be used via different ways in VS Code
 
 - ⌨️ The **Command Palette** and the pre-configured **Keyboard Shortcuts**
 
-	![Command in Command Palette](images/command-palette.png)
+	![Command in Command Palette](https://github.com/lumaxis/snippet-copy/raw/main/images/command-palette.png)
 
 - 📝 The **Context Menu** on selected text in the editor
 
-	![Command in Context Menu](images/context-menu.png)
+	![Command in Context Menu](https://github.com/lumaxis/snippet-copy/raw/main/images/context-menu.png)
 
 ### Copy Snippet Without Leading Indentation
 

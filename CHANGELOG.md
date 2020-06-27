@@ -10,7 +10,6 @@
 - Add `markdownCodeBlock.includeLanguageIdentifier` configuration option for Markdown block behavior.  
   - Allows to set whether Markdown blocks should always include the [language identifier](https://help.github.com/en/github/writing-on-github/creating-and-highlighting-code-blocks) which allows for syntax highlighting in some tools (for example github.com) but is not compatible with others (for example Slack).  
   - The default is "`prompt`" which makes the extension always prompt when using the "Copy Snippet as Markdown Code Block" command.
-  - **This replaces `snippet-copy.addLanguageIdentifierToMarkdownBlock`**. Switch to the new `snippet-copy.markdownCodeBlock.includeLanguageIdentifier` setting. 
 
 ## [0.2.3]
 

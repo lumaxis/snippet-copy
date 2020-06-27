@@ -38,4 +38,4 @@ This command has an additional configuration option that let's you determine if 
 
 ---
 
-With an icon lovingly crafted by @dipree 🌺
+With an icon lovingly crafted by [@dipree](https://github.com/dipree) 🌺

@@ -47,6 +47,10 @@ export function wrapTextInMarkdownCodeBlock(document: TextDocument, text: string
 }
 
 export async function includeLanguageIdentifier(config: ExtensionConfig): Promise<boolean> {
+	if (config.addLanguageIdentifierToMarkdownBlock) {
+		return true;
+	}
+
 	let includeLanguageIdentifier = config.markdownCodeBlock.includeLanguageIdentifier;
 
 	if (includeLanguageIdentifier === 'prompt') {

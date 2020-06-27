@@ -1,5 +1,9 @@
 # Change Log
 
+## [0.2.2]
+
+Quick update to rename the default branch to "main"
+
 ## [0.2.1]
 
 ### Fixes

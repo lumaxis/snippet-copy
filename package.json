@@ -42,10 +42,20 @@
 		"configuration": {
 			"title": "Snippet Copy",
 			"properties": {
-				"snippet-copy.addLanguageIdentifierToMarkdownBlock": {
-					"type": "boolean",
-					"default": false,
-					"description": "Add a programming language identifier to the beginning of the Markdown code block. This is incompatible with some apps, for example Slack."
+				"snippet-copy.markdownCodeBlock.includeLanguageIdentifier": {
+					"type": "string",
+					"default": "prompt",
+					"markdownDescription": "Style of the generated [fenced Markdown code block](https://help.github.com/en/github/writing-on-github/creating-and-highlighting-code-blocks). By default, prompts every time a snippet is copied as a Markdown code block.",
+					"enum": [
+						"never",
+						"always",
+						"prompt"
+					],
+					"markdownEnumDescriptions": [
+						"Copy a regular fenced Markdown code block without language identifier.",
+						"Copy a fenced Markdown code block that includes the language identifier of the current document.  \nThis enables [automatic syntax highlighting](https://help.github.com/en/github/writing-on-github/creating-and-highlighting-code-blocks#syntax-highlighting) on e.g. GitHub or StackOverflow but isn't compatible with some apps, for example Slack.",
+						"Always prompt when copying a snippet as a Markdown code block whether to include the language identifier or not."
+					]
 				}
 			}
 		},
@@ -98,6 +108,7 @@
 		"eslint": "^7.3.1",
 		"glob": "^7.1.6",
 		"mocha": "^8.0.1",
+		"testdouble": "^3.13.1",
 		"typescript": "^3.9.5",
 		"vscode-test": "^1.4.0"
 	}

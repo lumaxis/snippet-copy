@@ -8,9 +8,10 @@ type MarkdownCodeBlockFlavorQuickPickItems = QuickPickItem & {
 };
 
 export async function generateSnippet(document: TextDocument, selections: Selection[], wrapInMarkdownCodeBlock = false): Promise<string> {
+	const config = workspace.getConfiguration('snippet-copy') as ExtensionConfig;
 	const texts: string[] = [];
 	selections.forEach(selection => {
-		texts.push(generateCopyableText(document, selection));
+		texts.push(generateCopyableText(document, selection, config));
 	});
 
 	const snippet = texts.join(endOfLineCharacter(document));
@@ -22,7 +23,7 @@ export async function generateSnippet(document: TextDocument, selections: Select
 	return snippet;
 }
 
-export function generateCopyableText(document: TextDocument, selection: Selection): string {
+export function generateCopyableText(document: TextDocument, selection: Selection, config: ExtensionConfig): string {
 	const lineIndexes = lineIndexesForSelection(selection);
 
 	// Remove last line's index if there's no selected text on that line
@@ -33,7 +34,11 @@ export function generateCopyableText(document: TextDocument, selection: Selectio
 	const minimumIndentation = minimumIndentationForLineIndexes(document, lineIndexes);
 	const text = contentOfLinesWithAdjustedIndentation(document, lineIndexes, minimumIndentation);
 
-	return text;
+	if (!config.convertTabsToSpaces.enabled) {
+		return text;
+	}
+
+	return replaceLeadingTabsWithSpaces(text, config.convertTabsToSpaces.tabSize);
 }
 
 export function wrapTextInMarkdownCodeBlock(document: TextDocument, text: string, addLanguageId = false): string {
@@ -57,6 +62,12 @@ export async function includeLanguageIdentifier(config: ExtensionConfig): Promis
 		}
 	}
 	return includeLanguageIdentifier === 'always';
+}
+
+export function replaceLeadingTabsWithSpaces(text: string, tabSize = 2): string {
+	const spaces = ' '.repeat(tabSize);
+
+	return text.replace(/^\t+/gm, (tabs) => tabs.replace(/\t/g, spaces));
 }
 
 export async function promptForMarkdownCodeBlockFlavor(): Promise<MarkdownCodeBlockFlavorQuickPickItems | undefined> {

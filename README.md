@@ -30,7 +30,8 @@ Simply get a copy of your currently selected code or text snippet added to your 
 
 ### Copy Snippet as Markdown Code Block
 
-Copies the currently selected snippet without leading indentation and automatically wraps it in a [fenced Markdown code block](https://help.github.com/en/github/writing-on-github/creating-and-highlighting-code-blocks).
+Copies the currently selected snippet without leading indentation and automatically wraps it in a [fenced Markdown code block](https://help.github.com/en/github/writing-on-github/creating-and-highlighting-code-blocks).  
+The code block can automatically include the language identifier for automatic syntax highlighting on some websites or tools. See below for details.
 
 ## Options
 

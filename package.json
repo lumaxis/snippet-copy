@@ -2,7 +2,7 @@
 	"name": "snippet-copy",
 	"displayName": "Snippet Copy",
 	"description": "Copy snippets of code without leading indentation for easier sharing",
-	"version": "0.2.3",
+	"version": "0.3.0",
 	"icon": "images/icon.png",
 	"galleryBanner": {
 		"color": "#1C252C",

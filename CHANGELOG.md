@@ -1,6 +1,6 @@
 # Change Log
 
-## [Unreleased]
+## [0.3.0]
 
 ### Features
 
@@ -30,7 +30,7 @@ Quick update to rename the default branch to "main"
 - Ignore empty or whitespace-only lines when calculating minimum indentation of the snippet (#17)
 - Fix banner color in VS Code Marketplace
 
-### Chore
+### Chores
 
 - Improve setup to keep third-party dependencies up-to-date
 - Improve development setup by launching debug session without other extensions

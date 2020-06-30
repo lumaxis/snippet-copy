@@ -30,11 +30,45 @@ Simply get a copy of your currently selected code or text snippet added to your 
 
 ### Copy Snippet as Markdown Code Block
 
-This command has an additional configuration option that let's you determine if the Markdown code block should contain the file's language identifier which enables [syntax highlighting](https://help.github.com/en/github/writing-on-github/creating-and-highlighting-code-blocks#syntax-highlighting) in some places:
+Copies the currently selected snippet without leading indentation and automatically wraps it in a [fenced Markdown code block](https://help.github.com/en/github/writing-on-github/creating-and-highlighting-code-blocks).
+
+## Options
+
+### Include Language Identifier
+
+The "Copy Snippet as Markdown Code Block" command can optionally include the current VS Code document's language identifier in the Markdown code block. Including a language identifier enables [syntax highlighting](https://help.github.com/en/github/writing-on-github/creating-and-highlighting-code-blocks#syntax-highlighting) in some places (like in Issue or Pull Request comments on GitHub) but is incompatible with other tools, such as Slack.
+
+This behavior can be controlled through a configuration setting:
 
 ```json
-"snippet-copy.addLanguageIdToMarkdownBlock": false // Default is false
+"snippet-copy.markdownCodeBlock.includeLanguageIdentifier": "prompt" // Default is to always prompt on use
 ```
+
+Possible options are:
+
+| Option    | Description                                                                              |
+| --------- | ---------------------------------------------------------------------------------------- |
+| `"prompt"`  | Default. Prompts you whenever the "Copy Snippet as Markdown Code Block" command is used. |
+| `"always"`  | Always include the document's language identifier in the Markdown code block.            |
+| `"never"`   | Never include the language identifer.                                                    |
+
+### Convert Tabs to Spaces
+
+Many tools or websites often render tabs very widely or generally in a weird way and make therefore them not very pleasant to look at. Snippet Copy therefore by default automatically converts a tab character to two spaces.
+
+This can be adjusted in settings:
+
+```json
+"snippet-copy.convertTabsToSpaces": {
+    "enabled": true,
+    "tabSize": 2
+}
+```
+
+| Setting     | Description                                                        |
+| ----------- | ------------------------------------------------------------------ |
+| `"enabled"` | `true` by default. Whether to convert tabs to spaces.              |
+| `"tabSize"` | `2` is the default. How many spaces to convert a tab character to. |
 
 ---
 

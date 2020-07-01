@@ -1,5 +1,11 @@
 # Change Log
 
+## [Unreleased]
+
+### Fixes
+
+- Exclude unnecessary files from published file, reducing its size.
+
 ## [0.3.0]
 
 ### Features

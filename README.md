@@ -12,6 +12,10 @@ Ever wanted to copy part of a source file as a snippet and paste it somewhere el
 Previously, you either got a bunch of unnecessary indentation that made the snippet ugly to read or you had to manually un-tab the snippet, copy, and then reset the indentation.
 With **Snippet Copy** you can automatically get a snippet added to your clipboard with all the leading indentation already removed!
 
+## Installation
+
+Get the extension from the [marketplace](https://marketplace.visualstudio.com/items?itemName=lumaxis.snippet-copy) or manually search for it in VS Code. The unique identifier is `lumaxis.snippet-copy`.
+
 ## Features
 
 All features can be used via different ways in VS Code

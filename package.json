@@ -2,13 +2,12 @@
 	"name": "snippet-copy",
 	"displayName": "Snippet Copy",
 	"description": "Copy snippets of code without leading indentation for easier sharing",
-	"version": "0.3.1",
+	"version": "1.0.0",
 	"icon": "images/icon.png",
 	"galleryBanner": {
 		"color": "#1C252C",
 		"theme": "dark"
 	},
-	"preview": true,
 	"publisher": "lumaxis",
 	"author": {
 		"name": "Lukas Spieß"

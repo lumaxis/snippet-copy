@@ -1,5 +1,9 @@
 # Change Log
 
+## [1.0.0]
+
+First stable release 🎉
+
 ## [0.3.1]
 
 ### Fixes

@@ -119,7 +119,7 @@
 		"glob": "^7.1.6",
 		"mocha": "^8.1.1",
 		"testdouble": "^3.16.1",
-		"typescript": "^3.9.6",
+		"typescript": "^4.0.2",
 		"vscode-test": "^1.4.0"
 	}
 }

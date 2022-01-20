@@ -6,4 +6,3 @@ export function lineIndexesForSelection(selection: Selection): number[] {
 
 	return lineIndexes;
 }
-

@@ -1,15 +1,14 @@
 import * as assert from 'assert';
-import * as path from 'path';
 import * as td from 'testdouble';
 import * as vscode from 'vscode';
 import { Position, Selection, TextDocument } from 'vscode';
 import { generateCopyableText, generateSnippet, includeLanguageIdentifier, isMarkdownCodeBlockFlavor, replaceLeadingTabsWithSpaces, wrapTextInMarkdownCodeBlock } from '../../../lib/textHelpers';
 import { ExtensionConfig } from '../../../types/config';
 
-const fixturesPath = '/../../../../src/test/fixtures/';
-const uri = (fileName: string) => vscode.Uri.file(
-	path.join(__dirname + fixturesPath + fileName)
-);
+const fixtureUri = (fileName: string) => {
+	const workspaceFolder = vscode.workspace.workspaceFolders![0];
+	return vscode.Uri.joinPath(workspaceFolder.uri, fileName);
+};
 
 interface TestSelection {
 	selection: Selection;
@@ -37,23 +36,23 @@ describe('Text Helpers', () => {
 	let document2: TextDocument;
 
 	before(async () => {
-		document1 = await vscode.workspace.openTextDocument(uri('javascript-example.js'));
-		document2 = await vscode.workspace.openTextDocument(uri('tabs-python-example.py'));
+		document1 = await vscode.workspace.openTextDocument(fixtureUri('javascript-example.js'));
+		document2 = await vscode.workspace.openTextDocument(fixtureUri('tabs-python-example.py'));
 	});
 
 	context('generateSnippet', () => {
 		it('generates the correct snippet for a single selection', async () => {
-			assert.deepEqual(javaScriptTestSelection1.expectedResult, await generateSnippet(document1, [javaScriptTestSelection1.selection]));
+			assert.deepStrictEqual(javaScriptTestSelection1.expectedResult, await generateSnippet(document1, [javaScriptTestSelection1.selection]));
 		});
 
 		it('generates the correct snippet for multiple selections', async () => {
-			assert.deepEqual(javaScriptTestSelection1.expectedResult + '\n' + javaScriptTestSelection2.expectedResult,
+			assert.deepStrictEqual(javaScriptTestSelection1.expectedResult + '\n' + javaScriptTestSelection2.expectedResult,
 				await generateSnippet(document1, [javaScriptTestSelection1.selection, javaScriptTestSelection2.selection])
 			);
 		});
 
 		it('generates the correct snippet for multiple selections where one ends on the beginning of a newline', async () => {
-			assert.deepEqual(javaScriptTestSelection1.expectedResult + '\n' + javaScriptTestSelection2.expectedResult,
+			assert.deepStrictEqual(javaScriptTestSelection1.expectedResult + '\n' + javaScriptTestSelection2.expectedResult,
 				await generateSnippet(document1, [
 					new Selection(javaScriptTestSelection1.selection.start, new Position(5, 0)),
 					javaScriptTestSelection2.selection
@@ -66,14 +65,14 @@ describe('Text Helpers', () => {
 		it('generates the correct text', () => {
 			const config: unknown = td.object({ convertTabsToSpaces: { enabled: false, tabSize: 2 } });
 
-			assert.deepEqual(generateCopyableText(document1, javaScriptTestSelection1.selection, config as ExtensionConfig),
+			assert.deepStrictEqual(generateCopyableText(document1, javaScriptTestSelection1.selection, config as ExtensionConfig),
 				javaScriptTestSelection1.expectedResult);
 		});
 
 		it('generates the correct text when the cursor is on a newline', () => {
 			const config: unknown = td.object({ convertTabsToSpaces: { enabled: false, tabSize: 2 } });
 
-			assert.deepEqual(generateCopyableText(document1, new Selection(javaScriptTestSelection1.selection.start, new Position(5, 0)), config as ExtensionConfig),
+			assert.deepStrictEqual(generateCopyableText(document1, new Selection(javaScriptTestSelection1.selection.start, new Position(5, 0)), config as ExtensionConfig),
 				javaScriptTestSelection1.expectedResult
 			);
 		});
@@ -81,7 +80,7 @@ describe('Text Helpers', () => {
 		it('generates the correct text when selection contains empty line', () => {
 			const config: unknown = td.object({ convertTabsToSpaces: { enabled: false, tabSize: 2 } });
 
-			assert.deepEqual(generateCopyableText(document1, javaScriptTestSelection3.selection, config as ExtensionConfig),
+			assert.deepStrictEqual(generateCopyableText(document1, javaScriptTestSelection3.selection, config as ExtensionConfig),
 				javaScriptTestSelection3.expectedResult
 			);
 		});
@@ -89,7 +88,7 @@ describe('Text Helpers', () => {
 		it('generates the correct text when selection contains tabs and replacement is enabled', () => {
 			const config: unknown = td.object({ convertTabsToSpaces: { enabled: true, tabSize: 2 } });
 
-			assert.deepEqual(generateCopyableText(document2, pythonTestSelection1.selection, config as ExtensionConfig),
+			assert.deepStrictEqual(generateCopyableText(document2, pythonTestSelection1.selection, config as ExtensionConfig),
 				pythonTestSelection1.expectedResult
 			);
 		});
@@ -98,12 +97,12 @@ describe('Text Helpers', () => {
 	context('wrapTextInMarkdownCodeBlock', () => {
 		it('returns the text wrapped in a Markdown code block', () => {
 			const codeSnippet = 'console.log("Yo");';
-			assert.equal(wrapTextInMarkdownCodeBlock(document1, codeSnippet), '```\n' + codeSnippet + '\n```');
+			assert.strictEqual(wrapTextInMarkdownCodeBlock(document1, codeSnippet), '```\n' + codeSnippet + '\n```');
 		});
 
 		it('returns the wrapped text with a language identifier', () => {
 			const codeSnippet = 'console.log("Yo");';
-			assert.equal(wrapTextInMarkdownCodeBlock(document1, codeSnippet, true), '```javascript\n' + codeSnippet + '\n```');
+			assert.strictEqual(wrapTextInMarkdownCodeBlock(document1, codeSnippet, true), '```javascript\n' + codeSnippet + '\n```');
 		});
 	});
 
@@ -129,15 +128,15 @@ describe('Text Helpers', () => {
 
 	context('replaceLeadingTabsWithSpaces', () => {
 		it('returns the correct text with the default tabSize', () => {
-			assert.equal(replaceLeadingTabsWithSpaces('	'), '  ');
+			assert.strictEqual(replaceLeadingTabsWithSpaces('	'), '  ');
 		});
 
 		it('returns the correct text with the custom tabSize', () => {
-			assert.equal(replaceLeadingTabsWithSpaces('	', 3), '   ');
+			assert.strictEqual(replaceLeadingTabsWithSpaces('	', 3), '   ');
 		});
 
 		it('correctly replaces in a multiline string but does not replace tabs in the middle of the string', () => {
-			assert.equal(replaceLeadingTabsWithSpaces(`	console.log("	Hello")
+			assert.strictEqual(replaceLeadingTabsWithSpaces(`	console.log("	Hello")
 		console.log("World")`), `  console.log("	Hello")
     console.log("World")`);
 		});
@@ -145,19 +144,19 @@ describe('Text Helpers', () => {
 
 	context('isMarkdownCodeBlockFlavor', () => {
 		it('returns true if value is "never"', () => {
-			assert.equal(isMarkdownCodeBlockFlavor('never'), true);
+			assert.strictEqual(isMarkdownCodeBlockFlavor('never'), true);
 		});
 
 		it('returns true if value is "always"', () => {
-			assert.equal(isMarkdownCodeBlockFlavor('always'), true);
+			assert.strictEqual(isMarkdownCodeBlockFlavor('always'), true);
 		});
 
 		it('returns false if value is any other string', () => {
-			assert.equal(isMarkdownCodeBlockFlavor('prompt'), false);
+			assert.strictEqual(isMarkdownCodeBlockFlavor('prompt'), false);
 		});
 
 		it('returns false if value is undefined', () => {
-			assert.equal(isMarkdownCodeBlockFlavor(undefined), false);
+			assert.strictEqual(isMarkdownCodeBlockFlavor(undefined), false);
 		});
 
 	});

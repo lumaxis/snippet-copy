@@ -2,6 +2,8 @@ import * as glob from 'glob';
 import * as Mocha from 'mocha';
 import * as path from 'path';
 
+require.context('./lib', true, /\.test\.ts$/);
+
 export function run(): Promise<void> {
 	// Create the mocha test
 	const mocha = new Mocha({

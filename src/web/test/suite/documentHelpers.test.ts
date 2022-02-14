@@ -4,7 +4,9 @@ import { Range, TextDocument } from 'vscode';
 import { adjustedRangeWithMinimumIndentation, contentOfLinesWithAdjustedIndentation, endOfLineCharacter, linesForIndexes, minimumIndentationForLineIndexes } from '../../../lib/documentHelpers';
 
 const fixtureUri = (fileName: string) => {
-	const workspaceFolder = vscode.workspace.workspaceFolders![0];
+	const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
+	if (!workspaceFolder) { throw new Error('No workspace folder found'); }
+
 	return vscode.Uri.joinPath(workspaceFolder.uri, fileName);
 };
 

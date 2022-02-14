@@ -6,7 +6,9 @@ import { generateCopyableText, generateSnippet, includeLanguageIdentifier, isMar
 import { ExtensionConfig } from '../../../types/config';
 
 const fixtureUri = (fileName: string) => {
-	const workspaceFolder = vscode.workspace.workspaceFolders![0];
+	const workspaceFolder = vscode.workspace.workspaceFolders?.[0];
+	if (!workspaceFolder) { throw new Error('No workspace folder found'); }
+
 	return vscode.Uri.joinPath(workspaceFolder.uri, fileName);
 };
 

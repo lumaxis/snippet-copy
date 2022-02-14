@@ -1,5 +1,5 @@
 import { commands, env, ExtensionContext } from 'vscode';
-import { generateSnippet } from './lib/textHelpers';
+import { generateSnippet } from '../lib/textHelpers';
 
 export function activate(context: ExtensionContext): void {
 	context.subscriptions.push(

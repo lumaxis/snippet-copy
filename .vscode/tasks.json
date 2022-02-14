@@ -5,11 +5,24 @@
 	"tasks": [
 		{
 			"type": "npm",
-			"script": "watch",
+			"script": "compile-web",
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"problemMatcher": [
+				"$ts-webpack",
+				"$tslint-webpack"
+			]
+		},
+		{
+			"type": "npm",
+			"script": "watch-web",
 			"group": "build",
 			"isBackground": true,
 			"problemMatcher": [
-				"$ts-webpack-watch"
+				"$ts-webpack-watch",
+				"$tslint-webpack-watch"
 			]
 		}
 	]

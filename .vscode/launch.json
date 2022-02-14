@@ -6,72 +6,36 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"name": "Launch Extension",
-			"type": "extensionHost",
-			"request": "launch",
-			"runtimeExecutable": "${execPath}",
-			"args": [
-				"${workspaceFolder}/src/test/fixtures",
-				"--disable-extensions",
-				"--extensionDevelopmentPath=${workspaceFolder}"
-			],
-			"stopOnEntry": false,
-			"sourceMaps": true,
-			"outFiles": [
-				"${workspaceFolder}/dist/**/*.js"
-			],
-			"preLaunchTask": "npm: watch"
-		},
-		{
-			"name": "Launch Tests",
-			"type": "extensionHost",
-			"request": "launch",
-			"runtimeExecutable": "${execPath}",
-			"args": [
-				"--disable-extensions",
-				"--extensionDevelopmentPath=${workspaceFolder}",
-				"--extensionTestsPath=${workspaceFolder}/dist/test/suite/index-node"
-			],
-			"stopOnEntry": false,
-			"sourceMaps": true,
-			"outFiles": [
-				"${workspaceFolder}/dist/**/*.js"
-			],
-			"preLaunchTask": "npm: watch"
-		},
-		{
-			"name": "Run Web Extension in VS Code",
+			"name": "Run Web Extension ",
 			"type": "pwa-extensionHost",
 			"debugWebWorkerHost": true,
 			"request": "launch",
 			"args": [
-				"${workspaceFolder}/src/test/fixtures",
+				"${workspaceFolder}/src/web/test/fixtures",
 				"--disable-extensions",
 				"--extensionDevelopmentPath=${workspaceFolder}",
 				"--extensionDevelopmentKind=web"
 			],
 			"outFiles": [
-				"${workspaceFolder}/dist/**/*.js"
+				"${workspaceFolder}/dist/web/**/*.js"
 			],
-			"preLaunchTask": "npm: watch"
+			"preLaunchTask": "npm: watch-web"
 		},
 		{
-			"name": "Extension Tests in VS Code",
+			"name": "Extension Tests",
 			"type": "extensionHost",
 			"debugWebWorkerHost": true,
 			"request": "launch",
 			"args": [
-				"${workspaceFolder}/src/test/fixtures",
-				"--disable-extensions",
+				"${workspaceFolder}/src/web/test/fixtures",
 				"--extensionDevelopmentPath=${workspaceFolder}",
 				"--extensionDevelopmentKind=web",
-				"--extensionTestsPath=${workspaceFolder}/dist/test/suite/index-web"
+				"--extensionTestsPath=${workspaceFolder}/dist/web/test/suite/index"
 			],
-			"sourceMaps": true,
 			"outFiles": [
-				"${workspaceFolder}/dist/**/*.js"
+				"${workspaceFolder}/dist/web/**/*.js"
 			],
-			"preLaunchTask": "npm: watch"
+			"preLaunchTask": "npm: watch-web"
 		}
 	]
 }

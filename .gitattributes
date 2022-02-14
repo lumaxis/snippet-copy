@@ -1,2 +1,2 @@
-src/test/fixtures/crlf-ruby-example.rb eol=crlf
+src/web/test/fixtures/crlf-ruby-example.rb eol=crlf
 *.sketch filter=lfs diff=lfs merge=lfs -text

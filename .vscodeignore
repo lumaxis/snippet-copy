@@ -3,6 +3,7 @@
 .vscode-test-web/**
 src/**
 out/**
+dist/**/test/**
 images/**
 !images/icon.png
 node_modules/**

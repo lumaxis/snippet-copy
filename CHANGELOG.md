@@ -2,7 +2,7 @@
 
 ## [2.0.0]
 
-Snippet copy is now a [web extension](https://code.visualstudio.com/api/extension-guides/web-extensions)! This means you can now also use it in browser-based versions of VS Code, for example GitHub Codespaces or on vscode.dev
+Snippet copy is now a [web extension](https://code.visualstudio.com/api/extension-guides/web-extensions)! This means you can now also use it in browser-based versions of VS Code, for example https://github.dev/lumaxis/snippet-copy
 
 ## [1.0.0]
 

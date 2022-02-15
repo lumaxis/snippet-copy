@@ -11,15 +11,11 @@
 		"project": "./tsconfig.json",
 		"sourceType": "module"
 	},
-	"plugins": ["@typescript-eslint"],
+	"plugins": [
+		"@typescript-eslint"
+	],
 	"rules": {
-		"@typescript-eslint/naming-convention": [
-			"warn",
-			{
-				"selector": "class",
-				"format": ["PascalCase"]
-			}
-		],
+		"@typescript-eslint/naming-convention": "warn",
 		"@typescript-eslint/semi": "warn",
 		"curly": "warn",
 		"eqeqeq": "warn",
@@ -27,11 +23,7 @@
 		"semi": "off",
 		"indent": ["error", "tab"]
 	},
-	"ignorePatterns": ["**/fixtures/**"],
-	"overrides": [
-		{
-			"files": ["**/*.ts"],
-			"excludedFiles": ["**/fixtures/**"]
-		}
+	"ignorePatterns": [
+		"**/*.d.ts"
 	]
 }

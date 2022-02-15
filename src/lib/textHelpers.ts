@@ -7,7 +7,7 @@ type MarkdownCodeBlockFlavorQuickPickItems = QuickPickItem & {
 	detail: IncludeLanguageIdentifier;
 };
 
-export async function generateSnippet(document: TextDocument, selections: Selection[], wrapInMarkdownCodeBlock = false): Promise<string> {
+export async function generateSnippet(document: TextDocument, selections: readonly Selection[], wrapInMarkdownCodeBlock = false): Promise<string> {
 	const config = workspace.getConfiguration('snippet-copy') as ExtensionConfig;
 	const texts: string[] = [];
 	selections.forEach(selection => {

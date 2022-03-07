@@ -119,7 +119,7 @@
 		"@vscode/test-web": "^0.0.22",
 		"assert": "^2.0.0",
 		"eslint": "^8.9.0",
-		"mocha": "^9.2.0",
+		"mocha": "^9.2.1",
 		"process": "^0.11.10",
 		"testdouble": "^3.16.4",
 		"ts-loader": "^9.2.6",

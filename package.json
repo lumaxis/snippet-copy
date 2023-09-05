@@ -21,12 +21,8 @@
 		"Other"
 	],
 	"engines": {
-		"vscode": "^1.64.2"
+		"vscode": "^1.81.1"
 	},
-	"activationEvents": [
-		"onCommand:snippet-copy.copySnippet",
-		"onCommand:snippet-copy.copySnippetAsMarkdownCodeBlock"
-	],
 	"browser": "./dist/web/extension.js",
 	"contributes": {
 		"commands": [
